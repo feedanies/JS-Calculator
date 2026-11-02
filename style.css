@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-color: #42c0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial,sans-serif;
+}
+
+.mainPart {
+    height: 90%;
+    width: 25%;
+    background-color: #4f5d66;
+    border-radius: 30px;
+    padding: 20px 20px 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.togglePart {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 28px;
+    background-color: #000000;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+.togglePart::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 20px;
+    background-color: #3dd5f3;
+    border-radius: 50%;
+}
+
+.displayPart {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 10px;
+    padding-bottom: 30px;
+}
+
+.topPart {
+    color: white;
+    font-size: 56px;
+    font-weight: bold;
+}
+
+.bottomPart {
+    color: white;
+    font-size: 26px;
+    font-weight: 300;
+}
+
+.buttonsPart {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+}
+
+.btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.clearBtn {
+    color: #3dd5f3;
+    font-weight: bold;
+}
+
+.btnOperator {
+    background-color: #3ea8d6;
+    border: none;
+    color: white;
+    font-size: 22px;
+    border-radius: 50%;
+    width: 43px;
+    height: 43px;
+    justify-self: center;
+    cursor: pointer;
+}
+
+
+
+body.light .mainPart {
+    background-color: #eaf8fc;
+}
+
+
+body.light .togglePart {
+    background-color: #3dd0f0;
+}
+
+body.light .togglePart::before {
+    left: 36px;
+    background-color: #4f5d66;
+}
+
+body.light .btn {
+    color: #444444;
+}
+
+body.light .topPart,
+body.light .bottomPart,
+body.light .clearBtn {
+    color: #3dd0f0;
+}
+
+
+body.light .btnOperator {
+    background-color: transparent;
+    color: #3dd0f0;
+}
