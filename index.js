@@ -20,7 +20,11 @@ function appendSymbol(symbol) {
             return;
         }
         let lastSymbol = value[value.length - 1];
-        if (isOperator(lastSymbol)) {
+
+        if(symbol=="%" && lastSymbol=="%"){
+            return;
+        }
+        if (isOperator(lastSymbol) && lastSymbol != "%") {
             value = value.slice(0, -1);
         }
     }
@@ -34,6 +38,18 @@ function appendSymbol(symbol) {
             }
         }
     }
+
+    let last = value[value.length - 1];
+    let beforeLast = value[value.length - 2];
+    let onlyZero = last == "0" && (beforeLast == undefined || isOperator(beforeLast));
+
+    if (onlyZero && !isOperator(symbol) && symbol != ".") {
+        value = value.slice(0, -1);
+    }
+    if (symbol == "00" && (value == "" || isOperator(last) || onlyZero)) {
+        symbol = "0";
+    }
+
 
     value += symbol;
     bottomPart.textContent = value;
@@ -57,20 +73,28 @@ function calculate() {
             exp = exp.slice(0, -1);
             exp += "/100";
         }
-        
+
         exp = exp.replaceAll("%", "/100*");
         let result = eval(exp);
-        topPart.textContent = result;
+
+        if (!isFinite(result)) {
+            topPart.textContent = "Error";
+            return;
+        }
+
+        let fix = result.toFixed(3);
+        topPart.textContent = parseFloat(fix);
+
     } catch (error) {
         topPart.textContent = "Error";
     }
 }
 
-function toggle(){
-    if(document.body.classList.contains("light")){
+function toggle() {
+    if (document.body.classList.contains("light")) {
         document.body.classList.remove("light");
     }
-    else{
+    else {
         document.body.classList.add("light");
     }
 }
